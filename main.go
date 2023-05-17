@@ -20,4 +20,7 @@ func main() {
   util.FetchOfficialUsdArsRate(endOfLastMonth, func(rate float64, date time.Time) {
     fmt.Println("[Result] USD to ARS (official)", rate, date.Format(DATE_ONLY))
   })
+  util.FetchMepUsdArsRate(endOfLastMonth, func(rate float64, date time.Time) {
+    fmt.Println("[Result] USD to ARS (MEP)", rate, date.Format(DATE_ONLY))
+  })
 }
