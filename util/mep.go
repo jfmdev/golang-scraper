@@ -37,7 +37,6 @@ func FetchMepUsdArsRate(deadline time.Time, callback func(float64, time.Time)) {
   var nodes []*cdp.Node
   err := chromedp.Run(ctx,
     chromedp.Navigate(TARGET_URL),
-    chromedp.ScrollIntoView(`footer`), // Scroll to footer to ensure that dynamic page is loaded.
     chromedp.WaitVisible(TABLE_BODY_SELECTOR),
     chromedp.Nodes(ROWS_SELECTOR, &nodes),
   )
