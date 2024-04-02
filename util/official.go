@@ -16,13 +16,13 @@ func FetchOfficialUsdArsRate(deadline time.Time, callback func(float64, time.Tim
 
   coll := colly.NewCollector()
 
-  coll.OnHTML("table[data-test='historical-data-table'] tbody tr[data-test='historical-data-table-row']", func(elem *colly.HTMLElement) {
+  coll.OnHTML("table.freeze-column-w-1 tbody tr.relative", func(elem *colly.HTMLElement) {
     // Read row data.
     rowDateStr := elem.ChildText("td:nth-child(1)")
     rowValueStr := elem.ChildText("td:nth-child(2)")
     rowDate, rowDateError := time.Parse(DATE_FORMAT, rowDateStr)
     rowValue, rowValueErr := strconv.ParseFloat(strings.Replace(rowValueStr, ",", ".", -1), 64);
-    
+
     // Check if the row contains more recent data.
     if rowDateError == nil && 
        rowValueErr == nil && 
